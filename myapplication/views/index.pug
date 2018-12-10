@@ -40,22 +40,21 @@ block content
               form(action='')
                 select
                   option(value='', disabled='', selected='', hidden='') Make
-                  //- for(x=0;x < 5;x++)
-                  //-   option(value='') #{results[x]}
-                  option(value='1') BMW
-                  option(value='2') Mercedes-Benz
+                  each res in results[0]
+                    option(value=res.idCar_make) #{res.Car_make}
                 select
                   option(value='', disabled='', selected='', hidden='') Model
+                  each res in results[1]
+                    option(value=res.idCar_make) #{res.Model}
+                  
                 select
                   option(value='', disabled='', selected='', hidden='') Year
+                  each res in results[1]
+                    option(value=res.idAnnouncement) #{res.Year}
                 select
                   option(value='', disabled='', selected='', hidden='') Body Type
-                select
-                  option(value='', disabled='', selected='', hidden='') Min Price
-                select
-                  option(value='', disabled='', selected='', hidden='') Max Price
-                select
-                  option(value='', disabled='', selected='', hidden='') Mileage
+                //- select
+                //-   option(value='', disabled='', selected='', hidden='') Mileage
                 input.search_button(type='button', value='Search')
                 input.reset_button(type='reset')
             .searchbuttons
@@ -75,70 +74,86 @@ block content
                     | YOUR CAR
       section#cars
         .all_cars.wrapp
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car1
-              p.car_div_text Mileage:------km
-              h3.car_div_price $#{results[0].Price} 
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car2
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car3
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car4
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car5
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car6
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car7
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
-          .car
-            .car_images
-              a(href='')
-                img(src='images/car.png', alt='Car')
-            .car_info
-              h4.car_div_title Car8
-              p.car_div_text Mileage:------km
-              h3.car_div_price $10000
+          each item in results[1]
+            .car
+              .car_images
+                //- a(href='')
+                //- img(src='images/car.png', alt='Car')
+              .car_info
+                h4.car_div_title #{item.Car_make} #{item.Model}
+                //- h4.car_div_title #{item.Model}
+                h4.car_div_title #{item.Year}
+                p.car_div_text Engine: #{item.Engine_V}l
+                p.car_div_text Mileage: #{item.Mileage}km
+                h3.car_div_price $#{item.Price}
+                h4.car_div_title #{item.Name}
+                p.car_div_title 
+                  span.txt #{item.Phone} 
+                  span.btn    Show
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car1
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car2
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car3
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car4
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car5
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car6
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car7
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car8
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
           // <div class="Arrows">
           .left_arrow
             a(href='')
@@ -260,18 +275,18 @@ block content
       #register_modal
         .modal
           .form2.wrapp
-            form(action='action.php', name='register')
+            form(method='post' action='/', name='register')
               // <fieldset class="auth">
               // <legend>Sign up</legend>
               .inner_form
                 span Sign up!
-                input(type='text', required='', placeholder='First name')
-                input#sur_name(type='text', placeholder='Last name')
-                input(type='email', required='', placeholder='E-mail')
-                input(type='text', placeholder='Phone', pattern='[0-9]{6,}')
-                input(type='password', required='', placeholder='Password')
+                input(type='text', required='', placeholder='First name', name='Name')
+                input#sur_name(type='text', placeholder='Last name', name='Surname')
+                input(type='email', required='', placeholder='E-mail', name='Email')
+                input(type='text', placeholder='Phone', name='Phone')
+                input(type='password', required='', placeholder='Password', name='Phone')
                 // <input type="password" id="re_pass" required="" placeholder="Confirm password">
-                input.submit_button(type='submit', value='Register')
+                input.submit_button(type='submit',name='add', value='Register')
                 input#close_button(type='button', value='Close')
               // </fieldset>
       #login_modal
@@ -297,8 +312,8 @@ block content
                 .selectu
                   select
                     option(value='', disabled='', selected='', hidden='') Make
-                    option(value='1') BMW
-                    option(value='2') Mercedes-Benz
+                    each res in results[0]
+                      option(value=res.idCar_make) #{res.Car_make}
                   select
                     option(value='', disabled='', selected='', hidden='') Model
                   select
